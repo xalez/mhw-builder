@@ -233,16 +233,7 @@ export class SetListComponent implements OnInit, AfterViewInit {
 </html>
 		`;
 		const blob = new Blob([fileString], { type: 'text/html' });
-		if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-			window.navigator.msSaveOrOpenBlob(blob, fileName);
-		} else {
-			const a = document.createElement('a');
-			a.href = URL.createObjectURL(blob);
-			a.download = fileName;
-			document.body.appendChild(a);
-			a.click();
-			document.body.removeChild(a);
-		}
+		this.downloadFile(fileName, blob);
 	}
 
 	downloadJsonFile() {
@@ -254,15 +245,15 @@ export class SetListComponent implements OnInit, AfterViewInit {
 		const fileName = `mhworld-builder-data(${dateNow}).json`;
 		const fileString = JSON.stringify(this.sets);
 		const blob = new Blob([fileString], { type: 'application/json' });
-		if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-			window.navigator.msSaveOrOpenBlob(blob, fileName);
-		} else {
-			const a = document.createElement('a');
-			a.href = URL.createObjectURL(blob);
-			a.download = fileName;
-			document.body.appendChild(a);
-			a.click();
-			document.body.removeChild(a);
-		}
+		this.downloadFile(fileName, blob);
+	}
+
+	downloadFile(fileName, blob) {
+		const a = document.createElement('a');
+		a.href = URL.createObjectURL(blob);
+		a.download = fileName;
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
 	}
 }

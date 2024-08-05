@@ -52,7 +52,7 @@ $slotPadding: 2px;
 			}
 
 			.image-container {
-				$elementImagePadding: $elementSpacing / 2;
+				$elementImagePadding: calc($elementSpacing / 2);
 
 				padding: $elementImagePadding;
 				height: $elementSize - $elementImagePadding * 2;
