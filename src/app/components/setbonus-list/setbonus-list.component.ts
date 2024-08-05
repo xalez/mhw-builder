@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
-import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { VirtualScrollerComponent } from '@iharbeck/ngx-virtual-scroller';
 import { EquippedSetBonusDetailModel } from '../../models/equipped-set-bonus.model';
 import { SetBonusModel } from '../../models/set-bonus.model';
 import { SkillModel } from '../../models/skill.model';

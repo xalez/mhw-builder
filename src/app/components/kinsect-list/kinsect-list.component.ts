@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
-import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { VirtualScrollerComponent } from '@iharbeck/ngx-virtual-scroller';
 import { ElementType } from 'src/app/types/element.type';
 import { KinsectModel } from '../../models/kinsect.model';
 import { DataService } from '../../services/data.service';
