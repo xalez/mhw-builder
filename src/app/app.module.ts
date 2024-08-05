@@ -1,5 +1,5 @@
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { VirtualScrollerModule } from '@iharbeck/ngx-virtual-scroller';
@@ -51,68 +51,62 @@ import { SlotService } from './services/slot.service';
 import { StatService } from './services/stat.service';
 import { TooltipService } from './services/tooltip.service';
 
-@NgModule({
-	declarations: [
-		AppComponent,
-		ArmorListComponent,
-		WeaponListComponent,
-		AugmentationsListComponent,
-		UpgradesListComponent,
-		ModificationsListComponent,
-		KinsectListComponent,
-		AmmoCapacitiesComponent,
-		MelodiesComponent,
-		DecorationListComponent,
-		CharmListComponent,
-		ToolListComponent,
-		SetbonusListComponent,
-		ItemDetailsComponent,
-		CommonDetailsComponent,
-		UpgradeDetailsComponent,
-		DecorationDetailsComponent,
-		KinsectDetailsComponent,
-		ItemSlotComponent,
-		AugmentationSlotComponent,
-		UpgradeSlotComponent,
-		AwakeningSlotComponent,
-		ModificationSlotComponent,
-		KinsectSlotComponent,
-		DecorationSlotComponent,
-		EquippedStatsComponent,
-		EquippedSkillsComponent,
-		EquippedBuffsComponent,
-		CalcDetailsComponent,
-		SkillDetailsComponent,
-		SetBonusDetailsComponent,
-		TooltipComponent,
-		SharpnessBarComponent,
-		SetListComponent,
-		NumbersArrPipe,
-	],
-	imports: [
-		BrowserModule,
-		HttpClientModule,
-		VirtualScrollerModule,
-		DataModule,
-		CommonModule
-	],
-	providers: [
-		Location,
-		{ provide: LocationStrategy, useClass: PathLocationStrategy },
-		DataService,
-		SkillService,
-		TooltipService,
-		EquipmentService,
-		SlotService,
-		StatService,
-		CalculationService,
-		BuildService,
-		SetService,
-		AppDataProvider,
-		{ provide: APP_INITIALIZER, useFactory: appDataProviderFactory, deps: [AppDataProvider], multi: true }
-	],
-	bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        ArmorListComponent,
+        WeaponListComponent,
+        AugmentationsListComponent,
+        UpgradesListComponent,
+        ModificationsListComponent,
+        KinsectListComponent,
+        AmmoCapacitiesComponent,
+        MelodiesComponent,
+        DecorationListComponent,
+        CharmListComponent,
+        ToolListComponent,
+        SetbonusListComponent,
+        ItemDetailsComponent,
+        CommonDetailsComponent,
+        UpgradeDetailsComponent,
+        DecorationDetailsComponent,
+        KinsectDetailsComponent,
+        ItemSlotComponent,
+        AugmentationSlotComponent,
+        UpgradeSlotComponent,
+        AwakeningSlotComponent,
+        ModificationSlotComponent,
+        KinsectSlotComponent,
+        DecorationSlotComponent,
+        EquippedStatsComponent,
+        EquippedSkillsComponent,
+        EquippedBuffsComponent,
+        CalcDetailsComponent,
+        SkillDetailsComponent,
+        SetBonusDetailsComponent,
+        TooltipComponent,
+        SharpnessBarComponent,
+        SetListComponent,
+        NumbersArrPipe,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        VirtualScrollerModule,
+        DataModule,
+        CommonModule], providers: [
+        Location,
+        { provide: LocationStrategy, useClass: PathLocationStrategy },
+        DataService,
+        SkillService,
+        TooltipService,
+        EquipmentService,
+        SlotService,
+        StatService,
+        CalculationService,
+        BuildService,
+        SetService,
+        AppDataProvider,
+        { provide: APP_INITIALIZER, useFactory: appDataProviderFactory, deps: [AppDataProvider], multi: true },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
 
 export function appDataProviderFactory(provider: AppDataProvider) {
